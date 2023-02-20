@@ -1,0 +1,39 @@
+   body{
+    background-color: #c1dbdb;
+	margin-left:10px;
+	margin:10px;
+
+   }
+   img {
+   text-align: center
+   }
+   h1 {
+    	font-family: fantasy;
+        margin-bottom:10px;
+        letter-spacing: 4px;
+   }
+   h2 {
+    	font-variant: small-caps;
+        letter-spacing: 4px;
+        margin-bottom:10px;
+        
+   }
+   p {
+    font-variant: small-caps; letter-spacing: 2px;
+    margin-top:0px
+   }
+
+   a {
+        color: #0059b2;
+        text-decoration: none;
+   }
+   a:hover {
+        color: #CC0000;
+        text-decoration: none;
+   }
+
+   hr
+   {
+   margin-top:0px
+   }
+

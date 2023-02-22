@@ -33,10 +33,8 @@ def google_upload(file_name: str, file_path: str, ui):
         my_file.SetContentFile(file_path)
         my_file.Upload()
         ui.is_uploading = False
+        return ui.txt_lng['uploaded_to_google']
 
     except Exception as e:
+        ui.is_uploading = False
         return f'Something went wrong :(\n {e}'
-
-
-#print(google_upload(file_content='test_data.txt'))
-

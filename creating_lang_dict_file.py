@@ -33,7 +33,9 @@ ru = {
     'mainmenu_setting': 'Настройки',
     'mainmenu_help': 'Справка',
 
-    'loading_text': 'Резервная копия создается'
+    'loading_text': 'Резервная копия создается',
+    'uploaded_to_google': 'Загрузка на Google Drive завершена!',
+    'uploading_text': 'Загрузка'
 }
 
 eng = {
@@ -69,7 +71,9 @@ eng = {
     'mainmenu_setting': 'Settings',
     'mainmenu_help': 'Help',
 
-    'loading_text': 'A backup is being created'
+    'loading_text': 'A backup is being created',
+    'uploaded_to_google': 'Upload to Google Drive is complete!',
+    'uploading_text': 'Uploading'
 }
 
 languages = {'russian': ru, 'english': eng}

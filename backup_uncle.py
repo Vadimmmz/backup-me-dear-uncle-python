@@ -154,16 +154,16 @@ class Interface:
         """
         self.is_uploading = is_uploading
         while self.is_uploading is True:
-            text = "Uploading   "
+            text = f"{self.txt_lng['uploading_text']}   "
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
-            text = "Uploading.  "
+            text = f"{self.txt_lng['uploading_text']}.  "
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
-            text = "Uploading.. "
+            text = f"{self.txt_lng['uploading_text']}.. "
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
-            text = "Uploading..."
+            text = f"{self.txt_lng['uploading_text']}..."
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
 
@@ -175,7 +175,7 @@ h = window.winfo_screenheight()
 w = w // 2 - 300
 h = h // 2 - 200
 
-window.geometry(f'600x400+{w}+{h}')
+window.geometry(f'600x450+{w}+{h}')
 window.iconbitmap('app_data/uncle_icon.ico')
 window.resizable(False, False)
 

@@ -134,13 +134,16 @@ def backup_process(ui):
     ui_checkbox_google_value = ui.enabled_google.get()
     if backup_result == 'was_created' and ui_checkbox_google_value == 1:
         threading.Thread(target=lambda: ui.txt_loader_google(is_uploading=True)).start()
-        google_upload(file_name=filename, file_path=path_to_destination, ui=ui)
+        upload_text = google_upload(file_name=filename, file_path=path_to_destination, ui=ui)
+        upload_text = 2*'\n' + upload_text
+    else:
+        upload_text = ''
 
     # Wait for animation finish
     time.sleep(2)
 
     # Enable UI items
-    ui.message_label['text'] = ui.message_label['text'] + '\n Upload is done!'
+    ui.message_label['text'] = f"{ui.message_label['text']} {upload_text}"
     ui.google_checkbutton.configure(text=ui.txt_lng['google_load'])
     ui.button_create_bckp['state'] = 'active'
     ui.mainmenu.entryconfigure(1, state='normal')

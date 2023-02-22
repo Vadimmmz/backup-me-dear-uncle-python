@@ -19,6 +19,7 @@ ru = {
     'button_create_bckp': 'Создать резервную копию',
 
     'openfolder_checkbutton': 'Открыть папку с файлом, после его создания.',
+    'google_load': 'Загрузить на Google Drive',
 
     'helpmenu_help': 'Помощь',
     'helpmenu_about': 'О программе',
@@ -54,6 +55,7 @@ eng = {
     'button_create_bckp': 'Create a backup',
 
     'openfolder_checkbutton': 'Open the folder with the file after it is created.',
+    'google_load': 'Upload to Google Drive',
 
     'helpmenu_help': 'Help',
     'helpmenu_about': 'About',

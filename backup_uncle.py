@@ -9,9 +9,9 @@ from functions.create_backup import backup_process
 import threading
 
 
-
 class Interface:
     def __init__(self, tkinter_obj):
+        self.is_uploading = False
         self.tkinter_obj = tkinter_obj
         self.is_creating = False
         self.txt_lng, self.lang = define_language()
@@ -58,7 +58,7 @@ class Interface:
         self.openfolder_checkbutton.grid(row=12, column=0, sticky=W, padx=5)
 
         self.enabled_google = IntVar()
-        self.google_checkbutton = Checkbutton(text='Google Disk', variable=self.enabled_google)
+        self.google_checkbutton = Checkbutton(text=self.txt_lng['google_load'], variable=self.enabled_google)
         self.google_checkbutton.grid(row=13, column=0, sticky=W, padx=5)
 
         # Get last pathes from file path.txt
@@ -79,9 +79,9 @@ class Interface:
 
         self.settings_menu_language = Menu(self.settings_menu, tearoff=0)
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_ru'],
-                                           command=lambda: set_language('r', ui))
+                                                command=lambda: set_language('r', ui))
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_en'],
-                                           command=lambda: set_language('e', ui))
+                                                command=lambda: set_language('e', ui))
 
         self.settings_menu.add_cascade(label=self.txt_lng['settings_menu_lang'],
                                        menu=self.settings_menu_language)
@@ -101,6 +101,7 @@ class Interface:
         self.lbl_comment_field.configure(text=self.txt_lng['lbl_comment_field'])
         self.button_create_bckp.configure(text=self.txt_lng['button_create_bckp'])
         self.openfolder_checkbutton.configure(text=self.txt_lng['openfolder_checkbutton'])
+        self.google_checkbutton.configure(text=self.txt_lng['google_load'])
 
         self.mainmenu.destroy()
         self.mainmenu = Menu(self.tkinter_obj)
@@ -145,6 +146,27 @@ class Interface:
             self.message_label['text'] = f"{self.txt_lng['loading_text']}..."
             time.sleep(0.5)
 
+    def txt_loader_google(self, is_uploading: bool):
+        """
+
+        Animation for text while backup in Google Drive uploading process
+
+        """
+        self.is_uploading = is_uploading
+        while self.is_uploading is True:
+            text = "Uploading   "
+            self.google_checkbutton.configure(text=text)
+            time.sleep(0.5)
+            text = "Uploading.  "
+            self.google_checkbutton.configure(text=text)
+            time.sleep(0.5)
+            text = "Uploading.. "
+            self.google_checkbutton.configure(text=text)
+            time.sleep(0.5)
+            text = "Uploading..."
+            self.google_checkbutton.configure(text=text)
+            time.sleep(0.5)
+        self.google_checkbutton.configure(text=self.txt_lng['google_load'])
 
 window = Tk()
 window.title("Backup me, dear uncle Python! (v 1.0)")

@@ -1,6 +1,7 @@
 import pickle
 
 ru = {
+    'auth_window_title': 'Авторизация в Google Drive',
     'messagebox_title': 'О программе',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'
                        f'Автор программы Зорин Вадим vadimmmz@mail.ru \n'
@@ -29,6 +30,7 @@ ru = {
 
     'settings_menu_lang': 'Язык',
     'settings_menu_exit': 'Выход',
+    'settings_menu_google': 'Google Drive',
 
     'mainmenu_setting': 'Настройки',
     'mainmenu_help': 'Справка',
@@ -39,6 +41,8 @@ ru = {
 }
 
 eng = {
+    'auth_window_title': 'Google Drive authorization',
+
     'messagebox_title': 'About',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'
                        f'Made by Vadim Zorin vadimmmz@mail.ru \n'
@@ -67,6 +71,7 @@ eng = {
 
     'settings_menu_lang': 'Language',
     'settings_menu_exit': 'Exit',
+    'settings_menu_google': 'Google Drive',
 
     'mainmenu_setting': 'Settings',
     'mainmenu_help': 'Help',

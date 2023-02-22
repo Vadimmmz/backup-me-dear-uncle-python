@@ -1,4 +1,4 @@
-from tkinter import Label, Button, Entry, Text, IntVar, Tk, W, Checkbutton
+from tkinter import Label, Button, Entry, Text, IntVar, Tk, W, Checkbutton, Toplevel, Canvas
 from tkinter import Menu
 from tkinter.ttk import Combobox
 import time
@@ -92,6 +92,8 @@ class Interface:
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_en'],
                                                 command=lambda: set_language('e', ui))
 
+        self.settings_menu.add_command(label=self.txt_lng['settings_menu_google'],
+                                       command=lambda: self.auth_window_open())
         self.settings_menu.add_cascade(label=self.txt_lng['settings_menu_lang'],
                                        menu=self.settings_menu_language)
         self.settings_menu.add_command(label=self.txt_lng['settings_menu_exit'],
@@ -124,6 +126,7 @@ class Interface:
         self.settings_menu.destroy()
         self.settings_menu = Menu(self.mainmenu, tearoff=0)
         self.settings_menu_language = Menu(self.settings_menu, tearoff=0)
+
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_ru'],
                                                 command=lambda: set_language('r', ui))
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_en'],
@@ -136,6 +139,23 @@ class Interface:
 
         self.mainmenu.add_cascade(label=self.txt_lng['mainmenu_setting'], menu=self.settings_menu)
         self.mainmenu.add_cascade(label=self.txt_lng['mainmenu_help'], menu=self.helpmenu)
+
+    def auth_window_open(self):
+        self.auth_window = Toplevel(self.tkinter_obj)
+        self.auth_window.title(self.txt_lng['auth_window_title'])
+        self.auth_window.resizable(False, False)
+        self.auth_window.geometry(f'500x300+350+350')
+        #self.auth_window.overrideredirect(True)
+        self.auth_window.wm_attributes('-topmost', True)
+        self.tkinter_obj.wm_attributes('-disabled', True)
+        self.button_close_auth_window = Button(self.auth_window, text='Close',
+                                               command=lambda: self.close_auth_window())
+        self.button_close_auth_window.place(x=20, y=160)
+        # self.canvas = Canvas(self.auth_window, width=200, height=200)
+
+    def close_auth_window(self):
+        self.tkinter_obj.wm_attributes('-disabled', False)
+        self.auth_window.destroy()
 
     def txt_loader(self, is_creating: bool):
         """
@@ -176,6 +196,7 @@ class Interface:
             text = f"{self.txt_lng['uploading_text']}..."
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
+
 
 window = Tk()
 window.title("Backup me, dear uncle Python! (v 1.0)")

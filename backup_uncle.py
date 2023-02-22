@@ -144,13 +144,17 @@ class Interface:
         self.auth_window = Toplevel(self.tkinter_obj)
         self.auth_window.title(self.txt_lng['auth_window_title'])
         self.auth_window.resizable(False, False)
-        self.auth_window.geometry(f'500x300+350+350')
-        #self.auth_window.overrideredirect(True)
+        self.auth_window.geometry(f'450x250+350+350')
+
+        # Без нее при нажатии на крестик, а не на кнопку закрыть - главное окно остается неактивным
+        self.auth_window.overrideredirect(True)
+
         self.auth_window.wm_attributes('-topmost', True)
         self.tkinter_obj.wm_attributes('-disabled', True)
-        self.button_close_auth_window = Button(self.auth_window, text='Close',
+
+        button_close_auth_window = Button(self.auth_window, text='Close',
                                                command=lambda: self.close_auth_window())
-        self.button_close_auth_window.place(x=20, y=160)
+        button_close_auth_window.place(x=20, y=220)
         # self.canvas = Canvas(self.auth_window, width=200, height=200)
 
     def close_auth_window(self):

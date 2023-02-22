@@ -166,7 +166,6 @@ class Interface:
             text = "Uploading..."
             self.google_checkbutton.configure(text=text)
             time.sleep(0.5)
-        self.google_checkbutton.configure(text=self.txt_lng['google_load'])
 
 window = Tk()
 window.title("Backup me, dear uncle Python! (v 1.0)")

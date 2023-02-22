@@ -130,15 +130,18 @@ def backup_process(ui):
     if os.path.exists('_backup_readme.txt'):
         os.remove('_backup_readme.txt')
 
-    # Load file on the Google Drive
+    # Upload file on the Google Drive
     ui_checkbox_google_value = ui.enabled_google.get()
     if backup_result == 'was_created' and ui_checkbox_google_value == 1:
         threading.Thread(target=lambda: ui.txt_loader_google(is_uploading=True)).start()
-        threading.Thread(target=lambda: google_upload(file_name=filename, file_path=path_to_destination)).start()
+        google_upload(file_name=filename, file_path=path_to_destination, ui=ui)
 
-
+    # Wait for animation finish
+    time.sleep(2)
 
     # Enable UI items
+    ui.message_label['text'] = ui.message_label['text'] + '\n Upload is done!'
+    ui.google_checkbutton.configure(text=ui.txt_lng['google_load'])
     ui.button_create_bckp['state'] = 'active'
     ui.mainmenu.entryconfigure(1, state='normal')
     ui.mainmenu.entryconfigure(5, state='normal')

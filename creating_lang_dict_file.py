@@ -53,7 +53,7 @@ eng = {
     'lbl_name': 'Enter a name for the archive file (optional):',
     'lbl_comment_field': 'Write a comment for info.txt inside the archive (optional):',
 
-    'button_select': ' Select ',
+    'button_select': '\xa0\xa0\xa0Select\xa0\xa0',
     'button_create_bckp': 'Create a backup',
 
     'openfolder_checkbutton': 'Open the folder with the file after it is created.',

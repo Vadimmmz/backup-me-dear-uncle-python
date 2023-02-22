@@ -116,7 +116,7 @@ def backup_process(ui):
         ui.destination_folder['values'] = read_patches_from_file(path_type=ui.destination_folder,
                                                                  file_type='app_data/dest_path.txt')
 
-        ui.message_label['text'] = ui.txt_lng['msg_lbl_done'] + message
+        ui.message_label['text'] = ui.txt_lng['msg_lbl_done'] + message + (2 * '\n')
         ui.message_label['foreground'] = 'green'
 
     elif backup_result == 'wasnt_created':
@@ -135,7 +135,6 @@ def backup_process(ui):
     if backup_result == 'was_created' and ui_checkbox_google_value == 1:
         threading.Thread(target=lambda: ui.txt_loader_google(is_uploading=True)).start()
         upload_text = google_upload(file_name=filename, file_path=path_to_destination, ui=ui)
-        upload_text = 2*'\n' + upload_text
     else:
         upload_text = ''
 

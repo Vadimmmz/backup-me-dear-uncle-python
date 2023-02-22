@@ -45,21 +45,30 @@ class Interface:
         self.comment_field = Text(tkinter_obj, width=62, height=3)
         self.comment_field.grid(row=10)
 
+        test_text = "Test Text... \n Trolo lo lo lo Lo Lo Lo Trooooloooolooo oho ho ho ho" \
+                    "yp ho ho hohooooo oho ho ho hoooo ohoho hotrololoooo looooou loo lo"
+
+        # Message label border
+        empty_text_for_border = 5 * ((165 * "\xa0") + "\n")
+        self.message_label_border = Label(tkinter_obj, text=empty_text_for_border, borderwidth=2, relief='groove')
+        self.message_label_border.place(x=12, y=290)
+
         # Message label
-        self.message_label = Label(tkinter_obj, text="", wraplength=510, foreground='green')
-        self.message_label.grid(row=14, column=0)
+        self.message_label = Label(tkinter_obj, text='', wraplength=490, foreground='green')
+        self.message_label.place(x=20, y=300)
 
         self.button_create_bckp = Button(tkinter_obj, text=self.txt_lng['button_create_bckp'],
                                          command=lambda: threading.Thread(target=lambda: backup_process(self)).start())
         self.button_create_bckp.grid(row=11, column=0, sticky=W, pady=10, padx=10)
 
+        # Check buttons
         self.enabled = IntVar()
         self.openfolder_checkbutton = Checkbutton(text=self.txt_lng['openfolder_checkbutton'], variable=self.enabled)
-        self.openfolder_checkbutton.grid(row=12, column=0, sticky=W, padx=5)
+        self.openfolder_checkbutton.place(x=6, y=260)
 
         self.enabled_google = IntVar()
         self.google_checkbutton = Checkbutton(text=self.txt_lng['google_load'], variable=self.enabled_google)
-        self.google_checkbutton.grid(row=13, column=0, sticky=W, padx=5)
+        self.google_checkbutton.place(x=290, y=260)
 
         # Get last pathes from file path.txt
         self.root_folder['values'] = read_patches_from_file(path_type=self.root_folder,
@@ -153,6 +162,7 @@ class Interface:
 
         """
         self.is_uploading = is_uploading
+
         while self.is_uploading is True:
             text = f"{self.txt_lng['uploading_text']}   "
             self.google_checkbutton.configure(text=text)
@@ -175,7 +185,7 @@ h = window.winfo_screenheight()
 w = w // 2 - 300
 h = h // 2 - 200
 
-window.geometry(f'600x450+{w}+{h}')
+window.geometry(f'600x420+{w}+{h}')
 window.iconbitmap('app_data/uncle_icon.ico')
 window.resizable(False, False)
 

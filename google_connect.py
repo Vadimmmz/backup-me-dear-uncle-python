@@ -25,13 +25,14 @@ def connect_google():
     return g_auth
 
 
-def create_and_upload_file(file_content, file_name='text.txt', ):
+def google_upload(file_name: str, file_path: str):
     try:
         con = connect_google()
         drive = GoogleDrive(con)
 
+        file_path = file_path + '/' + file_name
         my_file = drive.CreateFile({'title': file_name})
-        my_file.SetContentFile(file_content)
+        my_file.SetContentFile(file_path)
         my_file.Upload()
         return f'File {file_name} loading was done!'
 
@@ -39,5 +40,5 @@ def create_and_upload_file(file_content, file_name='text.txt', ):
         return f'Something went wrong :(\n {e}'
 
 
-print(create_and_upload_file(file_content='test_data.txt'))
+#print(google_upload(file_content='test_data.txt'))
 

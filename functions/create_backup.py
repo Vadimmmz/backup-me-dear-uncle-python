@@ -6,6 +6,7 @@ from shutil import make_archive
 from tkinter import END
 from functions.service_functions import make_copy_dir
 from functions.service_functions import read_patches_from_file, write_patches_to_file
+from google_connect import google_upload
 
 
 def create_backup(path: str, path_to_destination: str, name_prefix: str,
@@ -63,13 +64,13 @@ def create_backup(path: str, path_to_destination: str, name_prefix: str,
             if ui_checkbox_value == 1:
                 os.startfile(path_to_destination)
 
-            return 'was_created', copy_to
+            return 'was_created', copy_to, name + '.zip'
 
         else:
-            return 'wasnt_created', None
+            return 'wasnt_created', None, None
 
     except Exception as e:
-        return 'exception', str(e)
+        return 'exception', str(e), None
 
 
 def backup_process(ui):
@@ -93,7 +94,8 @@ def backup_process(ui):
     ui_checkbox_value = ui.enabled.get()
     comment_text = ui.comment_field.get(1.0, END).strip()
 
-    backup_result, message = create_backup(path, path_to_destination, name_prefix, ui_checkbox_value, comment_text)
+    backup_result, message, filename = create_backup(path, path_to_destination, name_prefix,
+                                                     ui_checkbox_value, comment_text)
 
     # Stop text animation
     ui.is_creating = False
@@ -127,6 +129,8 @@ def backup_process(ui):
     # Delete file '_backup_readme.txt' if it's in root folder
     if os.path.exists('_backup_readme.txt'):
         os.remove('_backup_readme.txt')
+
+    google_upload(file_name=filename, file_path=path_to_destination)
 
     # Enable UI items
     ui.button_create_bckp['state'] = 'active'

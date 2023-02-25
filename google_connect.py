@@ -31,7 +31,7 @@ def google_upload(file_name: str, file_path: str, ui):
         if os.path.exists('credentials.json'):
             g_auth = GoogleAuth()
         else:
-            assert Exception('Авторизуйтесь!')
+            raise Exception('Авторизуйтесь для загрузки на диск')
 
         drive = GoogleDrive(g_auth)
 

@@ -7,7 +7,6 @@ from tkinter import messagebox
 
 def google_sign_in():
 
-    # Create file credenta;s.json
     with open('credentials.json', 'w') as f:
         pass
     try:
@@ -18,9 +17,6 @@ def google_sign_in():
     except Exception:
         messagebox.showinfo('Title fail!', 'Авторизация не удалась. Пропробуйте еще раз')
 
-    #auth_url = ui.g_auth.GetAuthUrl()  # Create authentication url user needs to visit
-    #webbrowser.open(auth_url)
-
 
 def google_sign_out():
     if os.path.exists('credentials.json'):
@@ -28,6 +24,7 @@ def google_sign_out():
     else:
         pass
     messagebox.showinfo('Title success!', 'Вы вышли из профиля!')
+
 
 def google_upload(file_name: str, file_path: str, ui):
     try:

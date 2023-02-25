@@ -5,46 +5,36 @@ import os
 from tkinter import messagebox
 
 
-def google_auth(ui):
-    ui.g_auth = GoogleAuth()
-    auth_url = ui.g_auth.GetAuthUrl()  # Create authentication url user needs to visit
-    webbrowser.open(auth_url)
+def google_sign_in():
 
-
-def google_sign_in(ui):
+    # Create file credenta;s.json
+    with open('credentials.json', 'w') as f:
+        pass
     try:
-        code = ui.auth_secret.get().strip()
-        ui.g_auth.Auth(code)
+        g_auth = GoogleAuth()
+        drive = GoogleDrive(g_auth)
+        drive.GetAbout()
         messagebox.showinfo('Title success!', 'Авторизация прошла успешно!')
     except Exception:
         messagebox.showinfo('Title fail!', 'Авторизация не удалась. Пропробуйте еще раз')
 
+    #auth_url = ui.g_auth.GetAuthUrl()  # Create authentication url user needs to visit
+    #webbrowser.open(auth_url)
+
 
 def google_sign_out():
-    with open('credentials.json', 'w') as f:
-        pass
-
-
-"""
-def connect_google():
     if os.path.exists('credentials.json'):
-        g_auth = GoogleAuth()
+        os.remove('credentials.json')
     else:
-        g_auth = GoogleAuth()
-        auth_url = g_auth.GetAuthUrl()  # Create authentication url user needs to visit
-        code = ask_user(auth_url)  # Your customized authentication flow
-        g_auth.Auth(code)
-
-    return g_auth"""
-
+        pass
+    messagebox.showinfo('Title success!', 'Вы вышли из профиля!')
 
 def google_upload(file_name: str, file_path: str, ui):
     try:
         if os.path.exists('credentials.json'):
             g_auth = GoogleAuth()
         else:
-            # Make this file and start auth
-            assert Exception()
+            assert Exception('Авторизуйтесь!')
 
         drive = GoogleDrive(g_auth)
 

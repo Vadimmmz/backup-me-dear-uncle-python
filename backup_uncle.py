@@ -7,7 +7,7 @@ from functions.ui_functions import open_about, open_help, close_program, open_ro
 from functions.service_functions import read_patches_from_file
 from functions.create_backup import backup_process
 import threading
-from google_connect import google_auth, google_sign_in, google_sign_out
+from google_connect import google_sign_in, google_sign_out
 
 
 class Interface:
@@ -147,9 +147,9 @@ class Interface:
         self.auth_window.protocol('WM_DELETE_WINDOW', lambda: self.close_auth_window())
         self.auth_window.title(self.txt_lng['auth_window_title'])
         self.auth_window.resizable(False, False)
-        self.auth_window.geometry(f'450x220+400+250')
+        self.auth_window.geometry(f'450x130+400+250')
         self.auth_window.iconbitmap('app_data/uncle_icon.ico')
-        self.auth_window.wm_attributes('-topmost', True)
+        #self.auth_window.wm_attributes('-topmost', True)
         self.tkinter_obj.wm_attributes('-disabled', True)
         # Makes main app window unactive while settings window is open
         # self.auth_window.overrideredirect(True)
@@ -159,24 +159,25 @@ class Interface:
                                        'сохранять ваши резервные копии в своем облачном хранилище.', )
         self.auth_text1.grid(row=0, column=0, padx=10)
 
-        self.button_get_psw = Button(self.auth_window, text='Получить код', command=lambda: google_auth(self))
-        self.button_get_psw.grid(row=1, column=0, pady=10)
+        self.button_get_psw = Button(self.auth_window, text='Войти в аккаунт',
+                                     command=lambda: google_sign_in(), width=17)
+        self.button_get_psw.place(x=14, y=50)
 
-        self.auth_text2 = Label(self.auth_window, text='Введите полученный код доступа:')
-        self.auth_text2.place(x=14, y=85)
+        #self.auth_text2 = Label(self.auth_window, text='Введите полученный код доступа:')
+        #self.auth_text2.place(x=14, y=85)
 
-        self.auth_secret = Entry(self.auth_window, width=60, borderwidth=1)
-        self.auth_secret.place(x=14, y=110)
+        #self.auth_secret = Entry(self.auth_window, width=60, borderwidth=1)
+        #self.auth_secret.place(x=14, y=110)
 
-        self.button_auth = Button(self.auth_window, text='Войти', command=lambda: google_sign_in(self))
-        self.button_auth.place(x=390, y=105)
+        #self.button_auth = Button(self.auth_window, text='Войти', command=lambda: google_sign_in(self))
+        #self.button_auth.place(x=390, y=105)
 
-        self.button_auth_out = Button(self.auth_window, text='Выйти из аккаунта', command=google_sign_out)
-        self.button_auth_out.place(x=14, y=145)
+        self.button_auth_out = Button(self.auth_window, text='Выйти из аккаунта', command=google_sign_out, width=17)
+        self.button_auth_out.place(x=14, y=80)
 
-        button_close_auth_window = Button(self.auth_window, text='Закрыть окно',
-                                          command=lambda: self.close_auth_window())
-        button_close_auth_window.place(x=14, y=180)
+        #button_close_auth_window = Button(self.auth_window, text='Закрыть окно',
+        #                                  command=lambda: self.close_auth_window())
+        #button_close_auth_window.place(x=14, y=180)
 
 
     def close_auth_window(self):

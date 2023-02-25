@@ -1,11 +1,10 @@
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-import webbrowser
 import os
 from tkinter import messagebox
 
 
-def google_sign_in():
+def google_sign_in(txt_lng: dict):
 
     with open('credentials.json', 'w') as f:
         pass
@@ -13,17 +12,17 @@ def google_sign_in():
         g_auth = GoogleAuth()
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
-        messagebox.showinfo('Title success!', 'Авторизация прошла успешно!')
+        messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_success'])
     except Exception:
-        messagebox.showinfo('Title fail!', 'Авторизация не удалась. Пропробуйте еще раз')
+        messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_fail'])
 
 
-def google_sign_out():
+def google_sign_out(txt_lng: dict):
     if os.path.exists('credentials.json'):
         os.remove('credentials.json')
     else:
         pass
-    messagebox.showinfo('Title success!', 'Вы вышли из профиля!')
+    messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_msg_out'])
 
 
 def google_upload(file_name: str, file_path: str, ui):
@@ -31,7 +30,7 @@ def google_upload(file_name: str, file_path: str, ui):
         if os.path.exists('credentials.json'):
             g_auth = GoogleAuth()
         else:
-            raise Exception('Авторизуйтесь для загрузки на диск')
+            raise Exception(ui.txt_lng['auth_window_exception'])
 
         drive = GoogleDrive(g_auth)
 
@@ -44,4 +43,4 @@ def google_upload(file_name: str, file_path: str, ui):
 
     except Exception as e:
         ui.is_uploading = False
-        return f'Something went wrong :(\n {e}'
+        return f"{ui.txt_lng['auth_window_exception_basic']} {e}"

@@ -2,6 +2,17 @@ import pickle
 
 ru = {
     'auth_window_title': 'Авторизация в Google Drive',
+    'auth_window_label_1': 'Авторизуйтесь в Google Drive ,чтобы иметь возможность '
+                           'сохранять ваши резервные копии в своем облачном хранилище.',
+    'auth_window_sing_in': 'Войти в аккаунт',
+    'auth_window_sing_out': 'Выйти из аккаунта',
+    'auth_windows_exception_basic': 'Что то пошло не так :(\n',
+    'auth_window_exception': 'Авторизуйтесь для загрузки на диск',
+    'auth_window_msg_out': 'Вы вышли из профиля',
+    'auth_window_auth_success': 'Авторизация прошла успешно!',
+    'auth_window_auth_fail': 'Авторизация не удалась. Пропробуйте еще раз',
+
+
     'messagebox_title': 'О программе',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'
                        f'Автор программы Зорин Вадим vadimmmz@mail.ru \n'
@@ -42,6 +53,14 @@ ru = {
 
 eng = {
     'auth_window_title': 'Google Drive authorization',
+    'auth_window_label_1': 'Log in to Google Drive to be able to save your backups to your cloud storage',
+    'auth_window_sing_in': 'Sing in',
+    'auth_window_sing_out': 'Sing out',
+    'auth_window_exception_basic': 'Something went wrong :(\n',
+    'auth_window_exception': 'Log in to upload to disk',
+    'auth_window_msg_out': 'You have logged out of your profile',
+    'auth_window_auth_success': 'Authorization was successful!',
+    'auth_window_auth_fail': 'Authorization failed. Try again',
 
     'messagebox_title': 'About',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'

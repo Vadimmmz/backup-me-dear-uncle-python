@@ -13,7 +13,7 @@ import os
 
 class Interface:
     def __init__(self, tkinter_obj):
-        self.g_auth = None
+
         self.is_uploading = False
         self.tkinter_obj = tkinter_obj
         self.is_creating = False
@@ -48,16 +48,13 @@ class Interface:
         self.comment_field = Text(tkinter_obj, width=62, height=3)
         self.comment_field.grid(row=10)
 
-        test_text = "Test Text... \n Trolo lo lo lo Lo Lo Lo Trooooloooolooo oho ho ho ho" \
-                    "yp ho ho hohooooo oho ho ho hoooo ohoho hotrololoooo looooou loo lo"
-
         # Message label border
         empty_text_for_border = 5 * ((165 * "\xa0") + "\n")
         self.message_label_border = Label(tkinter_obj, text=empty_text_for_border, borderwidth=2, relief='groove')
         self.message_label_border.place(x=12, y=290)
 
         # Message label
-        self.message_label = Label(tkinter_obj, text='', wraplength=490, foreground='green')
+        self.message_label = Label(tkinter_obj, text='', wraplength=480, foreground='green')
         self.message_label.place(x=20, y=300)
 
         self.button_create_bckp = Button(tkinter_obj, text=self.txt_lng['button_create_bckp'],
@@ -128,6 +125,8 @@ class Interface:
 
         self.settings_menu.destroy()
         self.settings_menu = Menu(self.mainmenu, tearoff=0)
+        self.settings_menu.add_command(label=self.txt_lng['settings_menu_google'],
+                                       command=lambda: self.auth_window_open())
         self.settings_menu_language = Menu(self.settings_menu, tearoff=0)
 
         self.settings_menu_language.add_command(label=self.txt_lng['settings_menu_language_ru'],
@@ -155,30 +154,17 @@ class Interface:
         # Makes main app window unactive while settings window is open
         # self.auth_window.overrideredirect(True)
 
-        self.auth_text1 = Message(self.auth_window, width=400,
-                                  text='Авторизуйтесь в Google Drive ,чтобы иметь возможность '
-                                       'сохранять ваши резервные копии в своем облачном хранилище.', )
-        self.auth_text1.grid(row=0, column=0, padx=10)
+        auth_text1 = Message(self.auth_window, width=400, text=self.txt_lng['auth_window_label_1'])
+        auth_text1.grid(row=0, column=0, padx=10)
 
-        self.button_get_psw = Button(self.auth_window, text='Войти в аккаунт',
-                                     command=lambda: threading.Thread(target=google_sign_in).start(), width=17)
-        self.button_get_psw.place(x=14, y=50)
+        button_get_psw = Button(self.auth_window, text=self.txt_lng['auth_window_sing_in'],
+                                command=lambda: threading.Thread(target=lambda: google_sign_in(self.txt_lng)).start(),
+                                width=17)
+        button_get_psw.place(x=14, y=50)
 
-        # self.auth_text2 = Label(self.auth_window, text='Введите полученный код доступа:')
-        # self.auth_text2.place(x=14, y=85)
-
-        # self.auth_secret = Entry(self.auth_window, width=60, borderwidth=1)
-        # self.auth_secret.place(x=14, y=110)
-
-        # self.button_auth = Button(self.auth_window, text='Войти', command=lambda: google_sign_in(self))
-        # self.button_auth.place(x=390, y=105)
-
-        self.button_auth_out = Button(self.auth_window, text='Выйти из аккаунта', command=google_sign_out, width=17)
-        self.button_auth_out.place(x=14, y=80)
-
-        # button_close_auth_window = Button(self.auth_window, text='Закрыть окно',
-        #                                  command=lambda: self.close_auth_window())
-        # button_close_auth_window.place(x=14, y=180)
+        button_auth_out = Button(self.auth_window, text=self.txt_lng['auth_window_sing_out'],
+                                 command=lambda: google_sign_out(self.txt_lng), width=17)
+        button_auth_out.place(x=14, y=80)
 
     def close_auth_window(self):
         if os.path.exists('credentials.json'):

@@ -6,10 +6,10 @@ from tkinter import messagebox
 
 def google_sign_in(txt_lng: dict, auth_text_result):
 
-    with open('credentials.json', 'w') as f:
+    with open('app_data/credentials.json', 'w') as f:
         pass
     try:
-        g_auth = GoogleAuth()
+        g_auth = GoogleAuth(settings_file='app_data/settings.yaml')
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
         #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_success'])
@@ -22,8 +22,8 @@ def google_sign_in(txt_lng: dict, auth_text_result):
 
 
 def google_sign_out(txt_lng: dict, auth_text_result):
-    if os.path.exists('credentials.json'):
-        os.remove('credentials.json')
+    if os.path.exists('app_data/credentials.json'):
+        os.remove('app_data/credentials.json')
     else:
         pass
     auth_text_result.configure(text=txt_lng['auth_window_msg_out'])
@@ -33,8 +33,8 @@ def google_sign_out(txt_lng: dict, auth_text_result):
 
 def google_upload(file_name: str, file_path: str, ui):
     try:
-        if os.path.exists('credentials.json'):
-            g_auth = GoogleAuth()
+        if os.path.exists('app_data/credentials.json'):
+            g_auth = GoogleAuth(settings_file='app_data/settings.yaml')
         else:
             raise Exception(ui.txt_lng['auth_window_exception'])
 

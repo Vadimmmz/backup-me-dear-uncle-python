@@ -174,17 +174,17 @@ class Interface:
         button_auth_out.place(x=14, y=80)
 
     def check_gdrive_possibility(self):
-        if not os.path.exists('credentials.json'):
+        if not os.path.exists('app_data/credentials.json'):
             self.google_checkbutton.configure(state='disabled')
         else:
             self.google_checkbutton.configure(state='active')
 
     def close_auth_window(self):
-        if os.path.exists('credentials.json'):
-            with open('credentials.json', 'r') as f:
+        if os.path.exists('app_data/credentials.json'):
+            with open('app_data/credentials.json', 'r') as f:
                 test_if_not_logged = f.readline()
             if not test_if_not_logged:
-                os.remove('credentials.json')
+                os.remove('app_data/credentials.json')
                 print("empty credentials.json was deleted")
             # deactivate google checkbutton in app main window
         self.check_gdrive_possibility()

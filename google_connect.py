@@ -4,7 +4,7 @@ import os
 from tkinter import messagebox
 
 
-def google_sign_in(txt_lng: dict):
+def google_sign_in(txt_lng: dict, auth_text_result):
 
     with open('credentials.json', 'w') as f:
         pass
@@ -12,17 +12,23 @@ def google_sign_in(txt_lng: dict):
         g_auth = GoogleAuth()
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
-        messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_success'])
+        #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_success'])
+        auth_text_result.configure(text=txt_lng['auth_window_auth_success'])
+        auth_text_result['foreground'] = 'green'
     except Exception:
-        messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_fail'])
+        auth_text_result.configure(text=txt_lng['auth_window_auth_fail'])
+        auth_text_result['foreground'] = 'red'
+        #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_fail'])
 
 
-def google_sign_out(txt_lng: dict):
+def google_sign_out(txt_lng: dict, auth_text_result):
     if os.path.exists('credentials.json'):
         os.remove('credentials.json')
     else:
         pass
-    messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_msg_out'])
+    auth_text_result.configure(text=txt_lng['auth_window_msg_out'])
+    auth_text_result['foreground'] = 'green'
+    #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_msg_out'])
 
 
 def google_upload(file_name: str, file_path: str, ui):

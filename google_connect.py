@@ -12,13 +12,13 @@ def google_sign_in(txt_lng: dict, auth_text_result):
         g_auth = GoogleAuth(settings_file='app_data/settings.yaml')
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
-        #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_success'])
+
         auth_text_result.configure(text=txt_lng['auth_window_auth_success'])
         auth_text_result['foreground'] = 'green'
-    except Exception:
-        auth_text_result.configure(text=txt_lng['auth_window_auth_fail'])
+
+    except Exception as e:
+        auth_text_result.configure(text=f"{txt_lng['auth_window_auth_fail']}\n{e}")
         auth_text_result['foreground'] = 'red'
-        #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_auth_fail'])
 
 
 def google_sign_out(txt_lng: dict, auth_text_result):
@@ -28,7 +28,6 @@ def google_sign_out(txt_lng: dict, auth_text_result):
         pass
     auth_text_result.configure(text=txt_lng['auth_window_msg_out'])
     auth_text_result['foreground'] = 'green'
-    #messagebox.showinfo(txt_lng['auth_window_title'], txt_lng['auth_window_msg_out'])
 
 
 def google_upload(file_name: str, file_path: str, ui):

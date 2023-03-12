@@ -6,7 +6,7 @@ ru = {
                            'сохранять ваши резервные копии в своем облачном хранилище.',
     'auth_window_sing_in': 'Войти в аккаунт',
     'auth_window_sing_out': 'Выйти из аккаунта',
-    'auth_windows_exception_basic': 'Что то пошло не так :(\n',
+    'auth_window_exception_basic': 'Что то пошло не так :(\n',
     'auth_window_exception': 'Авторизуйтесь для загрузки на диск',
     'auth_window_msg_out': 'Вы вышли из профиля',
     'auth_window_auth_success': 'Авторизация прошла успешно!',

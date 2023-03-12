@@ -165,7 +165,7 @@ class Interface:
 
         button_get_psw = Button(self.auth_window, text=self.txt_lng['auth_window_sing_in'],
                                 command=lambda: threading.Thread(target=lambda: \
-                                    google_sign_in(self.txt_lng, self.auth_text_result)).start(),
+                                    google_sign_in(self.txt_lng, self.auth_text_result, self.auth_window)).start(),
                                 width=17)
         button_get_psw.place(x=14, y=50)
 
@@ -174,6 +174,9 @@ class Interface:
         button_auth_out.place(x=14, y=80)
 
     def check_gdrive_possibility(self):
+        '''
+        Activate checbutton 'Upload on Google if user authorized'
+        '''
         if not os.path.exists('app_data/credentials.json'):
             self.google_checkbutton.configure(state='disabled')
         else:
@@ -185,9 +188,10 @@ class Interface:
                 test_if_not_logged = f.readline()
             if not test_if_not_logged:
                 os.remove('app_data/credentials.json')
-                print("empty credentials.json was deleted")
-            # deactivate google checkbutton in app main window
+
+        # checking if google checkbutton in app main window will be active or not
         self.check_gdrive_possibility()
+
         self.auth_window.grab_release()
         # self.tkinter_obj.wm_attributes('-disabled', False)
         self.auth_window.destroy()

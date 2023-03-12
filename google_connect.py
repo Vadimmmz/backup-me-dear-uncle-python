@@ -1,10 +1,9 @@
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import os
-from tkinter import messagebox
 
 
-def google_sign_in(txt_lng: dict, auth_text_result):
+def google_sign_in(txt_lng: dict, auth_text_result, auth_window):
 
     with open('app_data/credentials.json', 'w') as f:
         pass
@@ -13,8 +12,16 @@ def google_sign_in(txt_lng: dict, auth_text_result):
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
 
+        # Show auth window above other windows
+        auth_window.wm_attributes('-topmost', True)
+        auth_window.focus_force()
+
         auth_text_result.configure(text=txt_lng['auth_window_auth_success'])
         auth_text_result['foreground'] = 'green'
+
+        # Disable topmost after show auth window
+        auth_window.wm_attributes('-topmost', False)
+
 
     except Exception as e:
         auth_text_result.configure(text=f"{txt_lng['auth_window_auth_fail']}\n{e}")

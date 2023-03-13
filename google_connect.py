@@ -3,13 +3,15 @@ from pydrive.drive import GoogleDrive
 from functions.settings_google import settings_google_path
 import os
 
+# settings_file='app_data/settings.yaml'
+
 
 def google_sign_in(txt_lng: dict, auth_text_result, auth_window):
 
     with open('app_data/credentials.json', 'w') as f:
         pass
     try:
-        g_auth = GoogleAuth(settings_file='app_data/settings.yaml')
+        g_auth = GoogleAuth(settings_file=settings_google_path)
         drive = GoogleDrive(g_auth)
         drive.GetAbout()
 
@@ -41,7 +43,7 @@ def google_sign_out(txt_lng: dict, auth_text_result):
 def google_upload(file_name: str, file_path: str, ui):
     try:
         if os.path.exists('app_data/credentials.json'):
-            g_auth = GoogleAuth(settings_file='app_data/settings.yaml')
+            g_auth = GoogleAuth(settings_file=settings_google_path)
         else:
             raise Exception(ui.txt_lng['auth_window_exception'])
 

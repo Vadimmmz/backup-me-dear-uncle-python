@@ -1,11 +1,15 @@
+"""
+    This module consists set of application functions.
+
+"""
+
 from tkinter import END
 import os
 
 
 def read_patches_from_file(path_type, file_type: str) -> tuple:
     """
-
-    Reading no more than 5 last used paths from txt file which store this info
+        Reading no more than 5 last used paths from txt file which store this info.
 
     """
     # Checking if files is exists
@@ -29,8 +33,7 @@ def read_patches_from_file(path_type, file_type: str) -> tuple:
 
 def write_patches_to_file(path: str, values: tuple, file_type: str):
     """
-
-    Writing last 5 folder's paths to combobox menu next to "Select" button
+        Writing last 5 folder's paths to combobox menu next to "Select" button.
 
     """
     if values:
@@ -56,7 +59,8 @@ def write_patches_to_file(path: str, values: tuple, file_type: str):
 
 def make_copy_dir(path_to_destination: str):
     """
-    Make destination directory if this is not exists
+        Make destination directory if this is not exists.
+
     """
     if not os.path.exists(path_to_destination):
         path_split = path_to_destination.split('/')

@@ -1,3 +1,8 @@
+"""
+    This module provides the process of creating backups
+
+"""
+
 import os
 import time
 import threading
@@ -6,13 +11,13 @@ from shutil import make_archive
 from tkinter import END
 from functions.service_functions import make_copy_dir
 from functions.service_functions import read_patches_from_file, write_patches_to_file
+from functions.google_connect import google_upload
 
 
 def create_backup(path: str, path_to_destination: str, name_prefix: str,
                   ui_checkbox_value: int, comment_text: str) -> (str, str):
     """
-
-    This function created zip file which consist backup data, and put _readme.txt into this archive
+        This function created zip file which consist backup data, and put _readme.txt into this archive
 
     """
 
@@ -63,19 +68,18 @@ def create_backup(path: str, path_to_destination: str, name_prefix: str,
             if ui_checkbox_value == 1:
                 os.startfile(path_to_destination)
 
-            return 'was_created', copy_to
+            return 'was_created', copy_to, name + '.zip'
 
         else:
-            return 'wasnt_created', None
+            return 'wasnt_created', None, None
 
     except Exception as e:
-        return 'exception', str(e)
+        return 'exception', str(e), None
 
 
 def backup_process(ui):
     """
-
-    This function is running in thread and complete service actions which necessary for backup creating.
+        This function is running in thread and complete service actions which necessary for backup creating.
 
     """
 
@@ -93,7 +97,8 @@ def backup_process(ui):
     ui_checkbox_value = ui.enabled.get()
     comment_text = ui.comment_field.get(1.0, END).strip()
 
-    backup_result, message = create_backup(path, path_to_destination, name_prefix, ui_checkbox_value, comment_text)
+    backup_result, message, filename = create_backup(path, path_to_destination, name_prefix,
+                                                     ui_checkbox_value, comment_text)
 
     # Stop text animation
     ui.is_creating = False
@@ -114,7 +119,7 @@ def backup_process(ui):
         ui.destination_folder['values'] = read_patches_from_file(path_type=ui.destination_folder,
                                                                  file_type='app_data/dest_path.txt')
 
-        ui.message_label['text'] = ui.txt_lng['msg_lbl_done'] + message
+        ui.message_label['text'] = ui.txt_lng['msg_lbl_done'] + message + (2 * '\n')
         ui.message_label['foreground'] = 'green'
 
     elif backup_result == 'wasnt_created':
@@ -128,7 +133,20 @@ def backup_process(ui):
     if os.path.exists('_backup_readme.txt'):
         os.remove('_backup_readme.txt')
 
+    # Upload file on the Google Drive
+    ui_checkbox_google_value = ui.enabled_google.get()
+    if backup_result == 'was_created' and ui_checkbox_google_value == 1:
+        threading.Thread(target=lambda: ui.txt_loader_google(is_uploading=True)).start()
+        upload_text = google_upload(file_name=filename, file_path=path_to_destination, ui=ui)
+    else:
+        upload_text = ''
+
+    # Wait for animation finish
+    time.sleep(2)
+
     # Enable UI items
+    ui.message_label['text'] = f"{ui.message_label['text']} {upload_text}"
+    ui.google_checkbutton.configure(text=ui.txt_lng['google_load'])
     ui.button_create_bckp['state'] = 'active'
     ui.mainmenu.entryconfigure(1, state='normal')
     ui.mainmenu.entryconfigure(5, state='normal')

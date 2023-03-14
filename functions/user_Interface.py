@@ -152,10 +152,7 @@ class Interface:
         self.auth_window.geometry(f'450x130+400+250')
         self.auth_window.iconbitmap('app_data/uncle_icon.ico')
         self.auth_window.grab_set()
-        # self.auth_window.wm_attributes('-topmost', True)
-        # self.tkinter_obj.wm_attributes('-disabled', True)
-        # Makes main app window unactive while settings window is open
-        # self.auth_window.overrideredirect(True)
+
 
         auth_text1 = Message(self.auth_window, width=400, text=self.txt_lng['auth_window_label_1'])
         auth_text1.grid(row=0, column=0, padx=10)
@@ -163,6 +160,7 @@ class Interface:
         self.auth_text_result = Message(self.auth_window, width=200, text='')
         self.auth_text_result.place(x=200, y=50)
 
+        # Buttons
         button_get_psw = Button(self.auth_window, text=self.txt_lng['auth_window_sing_in'],
                                 command=lambda: threading.Thread(target=lambda: \
                                     google_sign_in(self.txt_lng, self.auth_text_result, self.auth_window)).start(),
@@ -173,11 +171,16 @@ class Interface:
                                  command=lambda: google_sign_out(self.txt_lng, self.auth_text_result), width=17)
         button_auth_out.place(x=14, y=80)
 
+        # Disabling buttons iа settings.yaml is not found
+        if not os.path.exists('app_data/settings.yaml'):
+            button_get_psw['state'] = 'disabled'
+            button_auth_out['state'] = 'disabled'
+
     def check_gdrive_possibility(self):
         '''
         Activate checbutton 'Upload on Google if user authorized'
         '''
-        if not os.path.exists('app_data/credentials.json'):
+        if not os.path.exists('app_data/credentials.json') or not os.path.exists('app_data/settings.yaml'):
             self.google_checkbutton.configure(state='disabled')
         else:
             self.google_checkbutton.configure(state='active')

@@ -6,14 +6,13 @@ from shutil import make_archive
 from tkinter import END
 from functions.service_functions import make_copy_dir
 from functions.service_functions import read_patches_from_file, write_patches_to_file
-from google_connect import google_upload
+from functions.google_connect import google_upload
 
 
 def create_backup(path: str, path_to_destination: str, name_prefix: str,
                   ui_checkbox_value: int, comment_text: str) -> (str, str):
     """
-
-    This function created zip file which consist backup data, and put _readme.txt into this archive
+        This function created zip file which consist backup data, and put _readme.txt into this archive
 
     """
 
@@ -75,8 +74,7 @@ def create_backup(path: str, path_to_destination: str, name_prefix: str,
 
 def backup_process(ui):
     """
-
-    This function is running in thread and complete service actions which necessary for backup creating.
+        This function is running in thread and complete service actions which necessary for backup creating.
 
     """
 

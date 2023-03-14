@@ -7,7 +7,7 @@ from functions.ui_functions import open_about, open_help, close_program, open_ro
 from functions.service_functions import read_patches_from_file
 from functions.create_backup import backup_process
 import threading
-from google_connect import google_sign_in, google_sign_out
+from functions.google_connect import google_sign_in, google_sign_out
 import os
 
 
@@ -105,6 +105,11 @@ class Interface:
         self.mainmenu.add_cascade(label=self.txt_lng['mainmenu_help'], menu=self.helpmenu)
 
     def update(self):
+        """
+            Updating widgets when changing the language
+
+        """
+
         self.txt_lng, self.lang = define_language()
         self.lbl_name.configure(text=self.txt_lng['lbl_name'])
         self.lbl_info1.configure(text=self.txt_lng['lbl_info1'])
@@ -145,6 +150,10 @@ class Interface:
         self.mainmenu.add_cascade(label=self.txt_lng['mainmenu_help'], menu=self.helpmenu)
 
     def auth_window_open(self):
+        """
+            Creating authorization window
+
+        """
         self.auth_window = Toplevel(self.tkinter_obj)
         self.auth_window.protocol('WM_DELETE_WINDOW', lambda: self.close_auth_window())
         self.auth_window.title(self.txt_lng['auth_window_title'])
@@ -152,7 +161,6 @@ class Interface:
         self.auth_window.geometry(f'450x130+400+250')
         self.auth_window.iconbitmap('app_data/uncle_icon.ico')
         self.auth_window.grab_set()
-
 
         auth_text1 = Message(self.auth_window, width=400, text=self.txt_lng['auth_window_label_1'])
         auth_text1.grid(row=0, column=0, padx=10)
@@ -176,16 +184,26 @@ class Interface:
             button_get_psw['state'] = 'disabled'
             button_auth_out['state'] = 'disabled'
 
+        # Setting focus on authorization windows
+        self.auth_window.focus_force()
+
     def check_gdrive_possibility(self):
-        '''
-        Activate checbutton 'Upload on Google if user authorized'
-        '''
+        """
+            Activate checkbutton 'Upload on Google if user authorized'
+
+        """
+
         if not os.path.exists('app_data/credentials.json') or not os.path.exists('app_data/settings.yaml'):
             self.google_checkbutton.configure(state='disabled')
         else:
             self.google_checkbutton.configure(state='active')
 
     def close_auth_window(self):
+        """
+            Event handling when the authorization window is closed
+
+        """
+
         if os.path.exists('app_data/credentials.json'):
             with open('app_data/credentials.json', 'r') as f:
                 test_if_not_logged = f.readline()
@@ -203,8 +221,7 @@ class Interface:
 
     def txt_loader(self, is_creating: bool):
         """
-
-        Animation for text while backup in creating process
+            Animation for text while backup in creating process
 
         """
         self.is_creating = is_creating
@@ -221,10 +238,10 @@ class Interface:
 
     def txt_loader_google(self, is_uploading: bool):
         """
-
-        Animation for text while backup in Google Drive uploading process
+            Animation for text while backup in Google Drive uploading process
 
         """
+
         self.is_uploading = is_uploading
 
         while self.is_uploading is True:

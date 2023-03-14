@@ -118,8 +118,3 @@ languages_file = 'app_data/language.data'
 f = open(languages_file, 'wb')
 pickle.dump(languages, f)
 f.close()
-
-
-
-
-

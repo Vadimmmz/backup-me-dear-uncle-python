@@ -25,7 +25,7 @@ class Interface:
         self.root_folder = Combobox(tkinter_obj, width=80)
         self.root_folder.grid(row=3, column=0, padx=10)
         self.button_find = Button(tkinter_obj, text=self.txt_lng['button_select'],
-                                  command=lambda: open_root_folder(self))
+                                  command=lambda: open_root_folder(self), width=8)
         self.button_find.grid(row=3, column=1)
 
         self.lbl_info2 = Label(tkinter_obj, text=self.txt_lng['lbl_info2'])
@@ -33,7 +33,7 @@ class Interface:
         self.destination_folder = Combobox(tkinter_obj, width=80)
         self.destination_folder.grid(row=5, column=0)
         self.button_find_dest = Button(tkinter_obj, text=self.txt_lng['button_select'],
-                                       command=lambda: open_destination_folder(self))
+                                       command=lambda: open_destination_folder(self), width=8)
         self.button_find_dest.grid(row=5, column=1)
 
         # Field for Name

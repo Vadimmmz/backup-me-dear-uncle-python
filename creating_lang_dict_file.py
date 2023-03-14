@@ -25,7 +25,7 @@ ru = {
     'lbl_info1': 'Выберите папку, для которой следует сделать резервную копию',
     'lbl_info2': 'Выберите папку, куда будем сохранять резервную копию',
     'lbl_name': 'Введите имя для файла архива (необязательно):',
-    'lbl_comment_field': 'Напишите комментарий, для info.txt внутри архива(необязательно):',
+    'lbl_comment_field': 'Напишите комментарий, для _readme.txt внутри архива(необязательно):',
 
     'button_select': 'Выбрать',
     'button_create_bckp': 'Создать резервную копию',
@@ -74,9 +74,9 @@ eng = {
     'lbl_info1': 'Select the folder for which you want to make a backup',
     'lbl_info2': 'Select the folder where we will save the backup',
     'lbl_name': 'Enter a name for the archive file (optional):',
-    'lbl_comment_field': 'Write a comment for info.txt inside the archive (optional):',
+    'lbl_comment_field': 'Write a comment for _readme.txt inside the archive (optional):',
 
-    'button_select': '\xa0\xa0\xa0Select\xa0\xa0',
+    'button_select': 'Select',
     'button_create_bckp': 'Create a backup',
 
     'openfolder_checkbutton': 'Open the folder with the file after it is created.',

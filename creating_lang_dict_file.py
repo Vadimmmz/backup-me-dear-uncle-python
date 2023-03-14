@@ -1,3 +1,13 @@
+"""
+    This script necessity for compiling 'language.data' file which store all text data.
+
+    For adding new language just add new variable that consist dictionary and edit
+    the 'languages' variable.
+
+    After making of new language dictionary just run this script.
+
+"""
+
 import pickle
 
 ru = {
@@ -102,6 +112,7 @@ eng = {
 
 languages = {'russian': ru, 'english': eng}
 languages_file = 'app_data/language.data'
+
 
 # Creating 'language.data' file
 f = open(languages_file, 'wb')

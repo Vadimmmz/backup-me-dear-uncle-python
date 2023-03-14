@@ -1,19 +1,20 @@
+"""
+
+    This module provides safety of your personally google application settings file.
+    If you want to make your own standalone version of 'Backup me dear uncle Python'
+    you need to modify settings_encryptor.py module and decide how you
+    will hide your crypto.key file for secure.
+
+    It's possible to storage data from crypto.key inside some variable right in this module,
+    and replace line 'key = load_key()' with 'key = key_for_compile '
+
+"""
+
 from cryptography.fernet import Fernet
 import os
 
-"""
 
-This module provides safety of your personally google application settings file.
-If you want to make your own standalone version of 'Backup me dear uncle Python'
-you need to modify settings_encryptor.py module and decide how you
-will hide your crypto.key file for secure. 
-
-It's possible to storage data from crypto.key inside some variable right in this module,
-and replace line 'key = load_key()' with 'key = key_for_compile '
-
-"""
-
-# import this from main module and also add import in google_connect module
+# Change value of this variable if you need change the path for settings.yaml (or change variable's name)
 GOOGLE_SETTINGS_PATH = 'app_data/settings.yaml'
 
 key_for_compile = 'place your key here if you want to compile this app'
@@ -21,8 +22,10 @@ key_for_compile = 'place your key here if you want to compile this app'
 
 def write_key():
     """
-    Use this function for make you own secret key for encrypt/descrypt settings.yaml file
+        Use this function for make you own secret key for encrypt/descrypt settings.yaml file
+
     """
+
     key = Fernet.generate_key()
     with open('app_data/crypto.key', 'wb') as key_file:
         key_file.write(key)

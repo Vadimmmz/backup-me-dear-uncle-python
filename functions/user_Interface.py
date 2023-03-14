@@ -1,3 +1,8 @@
+"""
+    UI module. Consist Interface class.
+
+"""
+
 from tkinter import Label, Button, Entry, Text, IntVar, W, Checkbutton, Toplevel, Message
 from tkinter import Menu
 from tkinter.ttk import Combobox
@@ -189,7 +194,7 @@ class Interface:
 
     def check_gdrive_possibility(self):
         """
-            Activate checkbutton 'Upload on Google if user authorized'
+            Activate checkbutton 'Upload on Google' if user authorized
 
         """
 

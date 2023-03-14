@@ -1,3 +1,8 @@
+"""
+    This module provides the process of creating backups
+
+"""
+
 import os
 import time
 import threading

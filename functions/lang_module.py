@@ -1,3 +1,10 @@
+"""
+    This module provides all that relation with language in the app.
+
+    * for change any text in the app you need to edit 'creating_lang_dict_file.py'
+      which locate in the root application folder.
+"""
+
 import pickle
 import os
 

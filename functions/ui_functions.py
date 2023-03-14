@@ -1,3 +1,8 @@
+"""
+    This module consists set of functions which use for UI works.
+
+"""
+
 from tkinter import messagebox, filedialog, END
 import os
 from pathlib import Path

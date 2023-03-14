@@ -1,3 +1,8 @@
+"""
+    This module consist all for work with Google Drive API
+
+"""
+
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from functions.settings_encryptor import decrypt, encrypt, GOOGLE_SETTINGS_PATH
@@ -20,8 +25,6 @@ def google_sign_in(txt_lng: dict, auth_text_result, auth_window):
         # Encrypting settings
         encrypt()
         encrypted = True
-
-        #drive.GetAbout()
 
         # Show auth window above other windows
         auth_window.wm_attributes('-topmost', True)

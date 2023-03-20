@@ -22,6 +22,8 @@ def google_sign_in(txt_lng: dict, auth_text_result, auth_window):
         g_auth = GoogleAuth(settings_file=GOOGLE_SETTINGS_PATH)
         drive = GoogleDrive(g_auth)
 
+        drive.GetAbout()
+
         # Encrypting settings
         encrypt()
         encrypted = True

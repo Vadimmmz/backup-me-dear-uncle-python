@@ -5,11 +5,7 @@
 
 from tkinter import messagebox, filedialog, END
 import os
-from pathlib import Path
-
-
-def get_project_root() -> Path:
-    return Path(__file__).parent.parent
+from functions.service_functions import get_project_root
 
 
 def open_about(txt_lng: dict):

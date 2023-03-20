@@ -12,12 +12,22 @@
 
 from cryptography.fernet import Fernet
 import os
+from functions.service_functions import get_project_root
 
 
 # Change value of this variable if you need change the path for settings.yaml (or change variable's name)
-GOOGLE_SETTINGS_PATH = 'app_data/settings.yaml'
+root_path = get_project_root()
+GOOGLE_SETTINGS_PATH = str(root_path) + '/app_data/settings.yaml'
 
 key_for_compile = 'place your key here if you want to compile this app'
+
+
+def first_running():
+    """
+        This function is necessary for the initial encryption setup
+    """
+    write_key()
+    encrypt()
 
 
 def write_key():

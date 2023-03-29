@@ -14,6 +14,8 @@ from functions.create_backup import backup_process
 import threading
 from functions.google_connect import google_sign_in, google_sign_out
 import os
+from functions.settings_encryptor import encryptor
+
 
 
 class Interface:
@@ -223,6 +225,9 @@ class Interface:
         self.auth_window.destroy()
         # focus on main window
         self.tkinter_obj.focus_force()
+
+        # Encrypt the settings.yaml file if authorise operation interrupted
+        encryptor.encrypt()
 
     def txt_loader(self, is_creating: bool):
         """

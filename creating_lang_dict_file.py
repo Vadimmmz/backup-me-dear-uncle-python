@@ -26,7 +26,8 @@ ru = {
     'messagebox_title': 'О программе',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'
                        f'Автор программы Зорин Вадим vadimmmz@mail.ru \n'
-                       f'Санкт-Петербург 2023',
+                       f'Санкт-Петербург 2023 \n'
+                       f'https://github.com/Vadimmmz/backup-me-dear-uncle-python',
 
     'msg_lbl_done': 'Копия создана в директории: ',
     'msg_lbl_choice_fldr': 'Выберите папку для копирования!',
@@ -75,7 +76,8 @@ eng = {
     'messagebox_title': 'About',
     'messagebox_text': f'Backup me, dear uncle Python! (v 1.0) \n'
                        f'Made by Vadim Zorin vadimmmz@mail.ru \n'
-                       f'Saint-Petersburg 2023',
+                       f'Saint-Petersburg 2023 \n'
+                       f'https://github.com/Vadimmmz/backup-me-dear-uncle-python',
 
     'msg_lbl_done': 'Copy created in directory: ',
     'msg_lbl_choice_fldr': 'To create a backup copy, select the necessary directories!',

@@ -80,3 +80,26 @@ def google_upload(file_name: str, file_path: str, ui):
 
         ui.is_uploading = False
         return f"{ui.txt_lng['auth_window_exception_basic']} {e}"
+
+def google_check():
+    """
+        Determining the ability to upload to Google Drive
+
+    """
+    encryptor.decrypt()
+    result = None
+    try:
+        g_auth = GoogleAuth(settings_file=encryptor.GOOGLE_SETTINGS_PATH)
+        drive = GoogleDrive(g_auth)
+        check = drive.ListFile()
+
+        if check:
+            result = True
+        else:
+            result = False
+    except:
+        result = False
+
+    encryptor.encrypt()
+
+    return result

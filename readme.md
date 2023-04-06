@@ -1,5 +1,5 @@
-# Backup me, dear uncle Python
-An application for quickly creating backups on your computer  
+# <img src="app_data/uncle_icon.ico"> Backup me, dear uncle Python
+Windows application for quickly creating backups on your computer. It possible to run it from .exe file.  
 
 <img src="image/backup_uncle.png">  
 
@@ -13,6 +13,13 @@ It is possible to write a text note, which is placed in the archive, in the form
 You also can upload your backup file on Google Drive storage.
 
 ## How to install
+
+If you want to compile this app to exe and have Google Drive uploading possibility
+you should have Google Cloud account and have sercret json file (app_data/settings.yaml in this app)  
+
+Read the [PyDrive documentation](https://pythonhosted.org/PyDrive/quickstart.html#authentication) 
+for detailed instructions on how to get a json file
+
 
 ```bash
 git clone https://github.com/Vadimmmz/backup-me-dear-uncle-python.git
@@ -29,11 +36,11 @@ pip install -r requirements.txt
 ```
 
 ## Used packages
-The library was used to compile the file:
+This libraries was used:
 - auto-py-to-exe==2.27.0
 - PyDrive~=1.3.1
 - google-api-python-client==1.8.0
-- 
+
 ## License
 
 MIT License

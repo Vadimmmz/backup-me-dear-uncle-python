@@ -64,8 +64,8 @@ ru = {
 eng = {
     'auth_window_title': 'Google Drive authorization',
     'auth_window_label_1': 'Log in to Google Drive to be able to save your backups to your cloud storage',
-    'auth_window_sing_in': 'Sing in',
-    'auth_window_sing_out': 'Sing out',
+    'auth_window_sing_in': 'Sign in',
+    'auth_window_sing_out': 'Sign out',
     'auth_window_exception_basic': 'Something went wrong :(\n',
     'auth_window_exception': 'Log in to upload to disk',
     'auth_window_msg_out': 'You have logged out of your profile',

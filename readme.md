@@ -18,7 +18,10 @@ If you want to compile this app to exe and have Google Drive uploading possibili
 you should have Google Cloud account and have sercret json file (app_data/settings.yaml in this app)  
 
 Read the [PyDrive documentation](https://pythonhosted.org/PyDrive/quickstart.html#authentication) 
-for detailed instructions on how to get a json file
+for detailed instructions on how to get a json file.
+
+If you got secret json file you must rename it to settings.yaml and execute first_time_encrypt.py. 
+**Don't execute this script more than one time!** Because it will break you settings.yaml file.
 
 
 ```bash

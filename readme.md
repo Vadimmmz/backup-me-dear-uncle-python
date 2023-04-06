@@ -8,15 +8,12 @@ The name of the archive being created contains the date and time of its creation
 
 It is possible to write a text note, which is placed in the archive, in the form of a txt file.
 
-It is planned to add the ability to upload files to any of the cloud storage services.
+You also can upload your backup file on Google Drive storage.
 
-The program is in the process of finalizing new features, but it is already working.
 ## How to use
 
 
 ## Used packages
-The program is written in Python 3.9.
-
 The library was used to compile the file:
 - auto-py-to-exe==2.27.0
 

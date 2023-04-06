@@ -5,6 +5,11 @@
 
 from tkinter import END
 import os
+from pathlib import Path
+
+
+def get_project_root() -> Path:
+    return Path(__file__).parent.parent
 
 
 def read_patches_from_file(path_type, file_type: str) -> tuple:

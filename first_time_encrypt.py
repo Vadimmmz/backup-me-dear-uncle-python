@@ -7,6 +7,6 @@
 from functions.settings_encryptor import encryptor
 
 # Execute this
-#encryptor.first_running()
+encryptor.first_running()
 
 

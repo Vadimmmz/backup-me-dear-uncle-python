@@ -1,5 +1,5 @@
 # <img src="app_data/uncle_icon.ico"> Backup me, dear uncle Python
-Windows application for quickly creating backups on your computer. It possible to run it from .exe file.  
+Windows application for quickly creating backups on your computer. It is possible to run it from .exe file.  
 
 <img src="image/backup_uncle.png">  
 
